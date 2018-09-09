@@ -1,0 +1,32 @@
+{
+  "name": "react-aws-iot-provider",
+  "version": "1.0.0",
+  "description": "Context Provider affordance for AWS IOT interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhdeck/react-aws-iot-provider.git"
+  },
+  "keywords": [
+    "react",
+    "aws",
+    "iot",
+    "mqtt"
+  ],
+  "author": "Ray Deck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rhdeck/react-aws-iot-provider/issues"
+  },
+  "homepage": "https://github.com/rhdeck/react-aws-iot-provider#readme",
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "*"
+  },
+  "dependencies": {
+    "aws-iot-device-sdk": "^2.2.1"
+  }
+}
