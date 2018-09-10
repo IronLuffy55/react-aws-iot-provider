@@ -1,7 +1,7 @@
 import React, { createContext, Component } from "react";
 import { device } from "aws-iot-device-sdk";
 import PropTypes from "prop-types";
-const { Provider, Consumer } = createContext;
+const { Provider, Consumer } = createContext({});
 class AWSIOTProvider extends Component {
   state = {
     send: message => {
@@ -18,7 +18,10 @@ class AWSIOTProvider extends Component {
       port: 443,
       host: props.iotEndpoint
     });
-    this.client.on("connect", () => subscribe(this.props.iotTopic));
+    this.client.on("connect", () => {
+      this.setState({ status: "connected" });
+      subscribe(this.props.iotTopic);
+    });
     this.client.on("message", this.onMessage.bind(this));
     this.client.on("close", this.onClose.bind(this));
   }
