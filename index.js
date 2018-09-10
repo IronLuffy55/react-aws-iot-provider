@@ -12,11 +12,11 @@ class AWSIOTProvider extends Component {
     this.client = device({
       region: props.region,
       protocol: "wss",
-      accessKeyId: props.accessKey,
-      secretKey: props.secretKey,
-      sessionToken: props.sessionToken,
+      accessKeyId: this.props.accessKey,
+      secretKey: this.props.secretKey,
+      sessionToken: this.props.sessionToken,
       port: 443,
-      host: props.iotEndpoint
+      host: this.props.iotEndpoint
     });
     this.client.on("connect", () => {
       this.setState({ status: "connected" });
