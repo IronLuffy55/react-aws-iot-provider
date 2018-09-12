@@ -1,5 +1,5 @@
 import React, { createContext, Component } from "react";
-import { device } from "aws-iot-device-sdk";
+import { device } from "./aws-iot-device-sdk-js-react-native";
 import PropTypes from "prop-types";
 const { Provider, Consumer } = createContext({});
 class AWSIOTProvider extends Component {
