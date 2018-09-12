@@ -103,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const AWSIoTData = __webpack_require__(/*! aws-iot-device-sdk */ \"./node_modules/aws-iot-device-sdk/index.js\");\nmodule.exports = {\n  AWSIoTData: AWSIoTData\n};\n\n\n//# sourceURL=webpack://pro1/./entry.js?");
+eval("const AWSIoTData = __webpack_require__(/*! aws-iot-device-sdk */ \"./node_modules/aws-iot-device-sdk/index.js\");\nmodule.exports = {\n  thingShadow: AWSIoTData.thingShadow,\n  device: AWSIoTData.device,\n  jobs: AWSIoTData.jobs\n};\n\n\n//# sourceURL=webpack://pro1/./entry.js?");
 
 /***/ }),
 

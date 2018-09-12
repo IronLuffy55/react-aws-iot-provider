@@ -1,4 +1,6 @@
 const AWSIoTData = require("aws-iot-device-sdk");
 module.exports = {
-  AWSIoTData: AWSIoTData
+  thingShadow: AWSIoTData.thingShadow,
+  device: AWSIoTData.device,
+  jobs: AWSIoTData.jobs
 };
