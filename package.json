@@ -1,6 +1,6 @@
 {
   "name": "react-aws-iot-provider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Context Provider affordance for AWS IOT interface",
   "main": "index.js",
   "scripts": {
