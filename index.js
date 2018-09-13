@@ -2,7 +2,6 @@ import React, { createContext, Component } from "react";
 import { device } from "./aws-iot-device-sdk-js-react-native";
 import PropTypes from "prop-types";
 const { Provider, Consumer } = createContext({});
-console.log("Reading from l;inked file");
 class AWSIOTProvider extends Component {
   state = {
     send: message => {
