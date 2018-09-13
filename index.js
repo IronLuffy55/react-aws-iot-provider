@@ -21,7 +21,11 @@ class AWSIOTProvider extends Component {
       });
       this.client.on("connect", () => {
         this.setState({ status: "connected" });
-        subscribe(this.props.iotTopic);
+
+        this.client.subscribe(this.props.iotTopic);
+      });
+      this.client.on("error", error => {
+        console.log("ERROR>", error);
       });
       this.client.on("message", this.onMessage.bind(this));
       this.client.on("close", this.onClose.bind(this));
