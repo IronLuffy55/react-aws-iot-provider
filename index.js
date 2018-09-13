@@ -2,6 +2,7 @@ import React, { createContext, Component } from "react";
 import { device } from "./aws-iot-device-sdk-js-react-native";
 import PropTypes from "prop-types";
 const { Provider, Consumer } = createContext({});
+console.log("Reading from l;inked file");
 class AWSIOTProvider extends Component {
   state = {
     send: message => {
@@ -21,7 +22,11 @@ class AWSIOTProvider extends Component {
       });
       this.client.on("connect", () => {
         this.setState({ status: "connected" });
-        subscribe(this.props.iotTopic);
+
+        this.client.subscribe(this.props.iotTopic);
+      });
+      this.client.on("error", error => {
+        console.log("ERROR>", error);
       });
       this.client.on("message", this.onMessage.bind(this));
       this.client.on("close", this.onClose.bind(this));
