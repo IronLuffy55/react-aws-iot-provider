@@ -35,6 +35,9 @@ class AWSIOTProvider extends Component {
     this.client.publish(this.props.iotTopic, message); // send messages
   }
   onMessage(topic, message) {
+    if (this.props.logMessage) {
+      this.props.logMessage(message);
+    }
     this.setState({ message, topic });
   }
   onClose(topic) {
@@ -57,13 +60,15 @@ AWSIOTProvider.propTypes = {
   accessKey: PropTypes.string.isRequired,
   secretKey: PropTypes.string.isRequired,
   sessionToken: PropTypes.string.isRequired,
-  iotEndpoint: PropTypes.string.isRequired
+  iotEndpoint: PropTypes.string.isRequired,
+  logMessage: PropTypes.func
 };
 AWSIOTProvider.defaultProps = {
   region: "",
   accessKey: "",
   secretKey: "",
   sessionToken: "",
-  iotEndpoint: ""
+  iotEndpoint: "",
+  logMessage: null
 };
 export { AWSIOTProvider, Consumer as AWSIOTConsumer };
