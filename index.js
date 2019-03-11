@@ -8,27 +8,35 @@ class AWSIOTProvider extends Component {
       return this.send(message);
     }
   };
+  componentDidUpdate() {
+    if (!this.client && this.props.region) {
+      this.register();
+    }
+  }
+  register = () => {
+    this.client = device({
+      region: this.props.region,
+      protocol: "wss",
+      accessKeyId: this.props.accessKey,
+      secretKey: this.props.secretKey,
+      sessionToken: this.props.sessionToken,
+      port: 443,
+      host: this.props.iotEndpoint
+    });
+    this.client.on("connect", () => {
+      this.setState({ status: "connected" });
+
+      this.client.subscribe(this.props.iotTopic);
+    });
+    this.client.on("error", error => {
+      console.log("ERROR>", error);
+    });
+    this.client.on("message", this.onMessage.bind(this));
+    this.client.on("close", this.onClose.bind(this));
+  };
   componentDidMount() {
     if (!this.client && this.props.region) {
-      this.client = device({
-        region: this.props.region,
-        protocol: "wss",
-        accessKeyId: this.props.accessKey,
-        secretKey: this.props.secretKey,
-        sessionToken: this.props.sessionToken,
-        port: 443,
-        host: this.props.iotEndpoint
-      });
-      this.client.on("connect", () => {
-        this.setState({ status: "connected" });
-
-        this.client.subscribe(this.props.iotTopic);
-      });
-      this.client.on("error", error => {
-        console.log("ERROR>", error);
-      });
-      this.client.on("message", this.onMessage.bind(this));
-      this.client.on("close", this.onClose.bind(this));
+      this.register();
     }
   }
   send(message) {
